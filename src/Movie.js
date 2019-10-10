@@ -112,7 +112,7 @@ class Movie extends Component {
     );
   }
   async componentDidMount(){
-    let [response, credits, trailers, reviews] = await Promise.all([
+    let [response, credits, trailers, reviews, recomendations] = await Promise.all([
       fetch("https://api.themoviedb.org/3/tv/"+this.state.movie_id+"?api_key=f3f8ed9199080cc5ed38d8a087af4f01"),
       fetch("https://api.themoviedb.org/3/tv/"+this.state.movie_id+"/credits?api_key=f3f8ed9199080cc5ed38d8a087af4f01"),
       fetch("https://api.themoviedb.org/3/tv/"+this.state.movie_id+"/videos?api_key=f3f8ed9199080cc5ed38d8a087af4f01"),

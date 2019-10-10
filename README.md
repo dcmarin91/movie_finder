@@ -14,3 +14,5 @@ When the page loads, it will load the most popular TV shows. To search for an es
 If you want to acces a title, simply click on the image to get more information.
 To get recomendations depending on the genre of the TV show, simply click on the genre and it will give you the most popular TV shows related to that especific genre
 To go back home, click on the Movie logo anytime.
+
+The aplication can be found in the next link: https://moviefinder3091.herokuapp.com/
