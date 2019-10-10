@@ -20,6 +20,7 @@ class Movie extends Component {
         movie_id : this.props.location.search.replace("?",""),
         cast: [],
         video: {},
+        review: {},
     }
   }
   render() {
@@ -39,7 +40,7 @@ class Movie extends Component {
               <Grid item sm={5} key={this.state.movie.id} value={this.state.movie.id}>
                 <Paper>
                   <h3>{this.state.movie.original_name}</h3>
-                  <img src ={`https://image.tmdb.org/t/p/w500${this.state.movie.poster_path}`} alt = ""/>
+                  <img src ={`https://image.tmdb.org/t/p/w500${this.state.movie.poster_path}`} alt = "" width='90%'/>
                 </Paper>
               </Grid>
               <Grid item sm={7}>
@@ -84,12 +85,26 @@ class Movie extends Component {
                         </List>
                       </Grid>
                     </Grid>
-                    <iframe width="820" height="315"
-                      src={`https://www.youtube.com/embed/${this.state.video}`}>
-                    </iframe>
+                    <Grid item sm={12}>
+                      <iframe width='100%' height="315"
+                        src={`https://www.youtube.com/embed/${this.state.video}`}>
+                      </iframe>
+                    </Grid>
                   </Grid>
                 </Paper>
               </Grid>
+            </Grid>
+          }
+          {Object.keys(this.state.review).length > 0 &&
+            <Grid container sm={12}>
+              <h4>Reviews</h4>
+              {this.state.review.results.map(review =>
+                <div>
+                  <p>{review.content}</p>
+                  <a href = {review.url}>More info</a>
+                  <hr />
+                </div>
+              )}
             </Grid>
           }
         </div>
@@ -97,15 +112,18 @@ class Movie extends Component {
     );
   }
   async componentDidMount(){
-    let [response, credits, trailers] = await Promise.all([
+    let [response, credits, trailers, reviews] = await Promise.all([
       fetch("https://api.themoviedb.org/3/tv/"+this.state.movie_id+"?api_key=f3f8ed9199080cc5ed38d8a087af4f01"),
       fetch("https://api.themoviedb.org/3/tv/"+this.state.movie_id+"/credits?api_key=f3f8ed9199080cc5ed38d8a087af4f01"),
       fetch("https://api.themoviedb.org/3/tv/"+this.state.movie_id+"/videos?api_key=f3f8ed9199080cc5ed38d8a087af4f01"),
+      fetch("https://api.themoviedb.org/3/tv/"+this.state.movie_id+"/reviews?api_key=f3f8ed9199080cc5ed38d8a087af4f01"),
     ]);
     let data = await response.json();
     let credit = await credits.json();
     let trailer = await trailers.json();
+    let review = await reviews.json();
     this.setState({movie : data});
+    this.setState({review : review});
     this.setState({cast: credit.cast.slice(0,6)});
     if(trailer.results.length>0){
       this.setState({video: trailer.results[0].key});

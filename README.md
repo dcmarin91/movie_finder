@@ -2,7 +2,7 @@ This project is mockup TV series finder made as a Test for Netux.
 
 ## Instructions
 
-To run the project, clone it in your machine. Then open it and execute yarn install in the terminal to install all the packages required.
+To run the project, clone it in your machine. Then open it and execute yarn command in the terminal to install all the packages required.
 
 ### `yarn start`
 
