@@ -6,6 +6,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import GridList from '@material-ui/core/GridList';
 import Paper from '@material-ui/core/Paper';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
@@ -34,10 +35,10 @@ class Movie extends Component {
         </div>
         <div className = "container">
           {Object.keys(this.state.movie).length > 0 &&
-            <Grid container>
+            <Grid container sm={12}>
               <Grid item sm={5} key={this.state.movie.id} value={this.state.movie.id}>
                 <Paper>
-                  <h3>{this.state.movie.original_title}</h3>
+                  <h3>{this.state.movie.original_name}</h3>
                   <img src ={`https://image.tmdb.org/t/p/w500${this.state.movie.poster_path}`} alt = ""/>
                 </Paper>
               </Grid>
@@ -104,10 +105,9 @@ class Movie extends Component {
     let data = await response.json();
     let credit = await credits.json();
     let trailer = await trailers.json();
-    console.log(trailer);
     this.setState({movie : data});
     this.setState({cast: credit.cast.slice(0,6)});
-    if(Object.keys.trailer>0){
+    if(trailer.results.length>0){
       this.setState({video: trailer.results[0].key});
     }
   } 
