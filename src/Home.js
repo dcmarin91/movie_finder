@@ -23,7 +23,6 @@ class Home extends Component{
     this.handleMovie = this.handleMovie.bind(this);
   }
   render(){
-    const { classes } = this.props;
     return (
       <div className = "App">
         <div>

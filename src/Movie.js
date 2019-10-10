@@ -104,9 +104,12 @@ class Movie extends Component {
     let data = await response.json();
     let credit = await credits.json();
     let trailer = await trailers.json();
+    console.log(trailer);
     this.setState({movie : data});
     this.setState({cast: credit.cast.slice(0,6)});
-    this.setState({video: trailer.results[0].key});
+    if(Object.keys.trailer>0){
+      this.setState({video: trailer.results[0].key});
+    }
   } 
 
   goHome(){
