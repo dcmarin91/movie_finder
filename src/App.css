@@ -1,0 +1,21 @@
+body {
+  background-color: white
+}
+.container {
+  padding: 10px;
+}
+.movie{
+  cursor:pointer;
+}
+.navbar {
+text-align: center;
+}
+
+.Logo {
+  margin-right: auto;
+  padding: 20px;
+  font-size: 50px;
+  cursor:pointer;
+}
+
+
